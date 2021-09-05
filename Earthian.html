@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+{% load static %}
+
+
 <html>
   <head>
     <title>Earthian</title>
@@ -13,14 +16,149 @@
         text-align: left;
         font-size: 20px;
         /* margin : 5px ; */
-        padding : 15px ;
+        padding : 5px ;
         /* border : 5px solid red; */
         font-weight: bold;
       }
+
+      .head_container {
+            display : flex ;
+            align-items: center;
+            justify-content : center ;
+      }
+           .headline_item1 {
+                width: 50px ;
+                height : 100px ;
+
+                }
+           .headline_item2{
+                width : 100% ;
+                height : 100px ;
+                }
+      .realtime_container {
+            display : flex ;
+<!--            border : 1px solid red ;-->
+            height : 200px ;
+            width : 100% ;
+            flex-wrap : nowrap;
+            flex-flow : roe nowrap ;
+
+      }
+}
+
     </style>
-    <h1>Earthian</h1>
+      <div class = "head_container" >
+          <div class = headline_item1">
+            <img src = "{% static 'menu_icon.jpg' %}" alt = "" height="50px" width="50px">
+          </div>
+
+          <div class = "headline_item2" style = "text-align : center;">
+            <h1>Earthian</h1>
+          </div>
+          <div class = headline_item1>
+
+          </div>
+      </div>
+  </head>
+
 
   <body>
+    <style>
+<!--        .search-box{-->
+<!--            position : center ;-->
+<!--            top 50%; left 50%;-->
+<!--            transform : translate(0%, -30%);-->
+<!--            //background : #2f3640;-->
+<!--            height : 40px ;-->
+<!--            border-radius : 3px;-->
+<!--            border : 1px solid black;-->
+<!--            padding : 5px;-->
+<!--         }-->
+<!--        .search-btn{-->
+<!--            float: right;-->
+<!--            width: 30px; height: 30px;-->
+<!--            border-radius: 50%;-->
+<!--            background:#C0C0C0;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            transition: 0.4s;-->
+<!--        }-->
+<!--        .search-txt {-->
+<!--            border : none;-->
+<!--            background : none;-->
+<!--            outline: none;-->
+<!--            float: left;-->
+<!--            padding: 0;-->
+<!--            color: white;-->
+<!--            font-size: 16px;-->
+<!--            transition: 0.4s;-->
+<!--            line-height: 40px;-->
+<!--            width: 0px;-->
+<!--        }-->
+
+            form.search-box {
+                display : flex;
+<!--                border : 1px solid red;-->
+                width : 100%;
+<!--                justify-content : center ;-->
+                align-items : center;
+
+<!--                position : absolute ;-->
+<!--                top 50% ;-->
+<!--                left : 50%-->
+<!--                transform : translate(-50%, 50%));-->
+            }
+
+                form.search-box input[type='text'] {
+                    background-color : #fff;
+                    width : 90% ;
+                    padding : 10px ;
+                    border-radius : 15px 0 0 15px;
+                    border : 1px solid ;
+
+                }
+                form.search-box input[type='submit'] {
+                    background :
+                    background-color : blue;
+                    padding : 10px ;
+                    border-radius : 0 15px 15px 0;
+                    color : white ;
+                    margin-left : -20px;
+                }
+                form.search-box input[type='text']::placeholder {
+                    color : gray ;
+                }
+                form.search-box input[type='image'] {
+                    border : 1px solid white ;
+                    padding : 0 10px ;
+<!--                    padding : 3px ;-->
+<!--                    margin : 1px;-->
+
+    </style>
+    <div class = 'search-container'>
+        <form class = 'search-box'>
+            <input type = 'text' placeholder='검색어를 입력해 주세요.'>
+<!--            <input type = 'submit' value = 'search' >-->
+            <input type="image" src = "{% static 'search_button.jpg' %}" alt = "" width="35px" height = "35px" alt="submit feedback">
+        </form>
+    </div>
+
+
+<!--    <form method = "get" action = "http://search.naver.com/search.naver">-->
+<!--        <input name = "query">-->
+<!--        <input type = "submit" value = "Search">-->
+<!--    </form>-->
+<!--    <div class ="search-box">-->
+
+<!--        <input type = "text" class = "search-txt" name="" placeholder="검색어를 입력하세요">-->
+<!--		<a class="search-btn" href="#">-->
+
+<!--			<i class="fas fa-search"></i>-->
+<!--        form>-->
+<!--		</a>-->
+<!--    </div>-->
+
     <h2>주변 탐색</h2>
 
     <div id="googleMap" style="width:100%;height:400px;"></div>
@@ -33,39 +171,42 @@
         };
       var map = new google.maps.Map(document.getElementById("googleMap"),mapProp); //구글맵 불러오기, 쉼표 뒤는 위치
 
-//미커 표시
+//마커 표시
       var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(37.52006,126.85293)});
-      marker.setMap(map)
+        position: new google.maps.LatLng(37.52006,126.85293),
+       });
+       marker.setMap(map)
 
-//마커 방방뛰는 애니메이션
-      // var marker = new google.maps.Marker({
-      //   position: new google.maps.LatLng(51.508742,-0.120850),
-      //   animation:google.maps.Animation.BOUNCE //마크 위치가 방방
-      //   });
-      // marker.setMap(map)
+      var marker2 = new google.maps.Marker({
+        position: new google.maps.LatLng(37.520718,126.851798)
+       });
+       marker2.setMap(map)
 
-//마커 디자인 변경
-      // var marker = new google.maps.Marker({
-      //   position: new google.maps.LatLng(51.508742,-0.120850),
-      //   icon:'pinkball.png'  //pinkball 이미지가 없어서 작동은 안함.
-      //   });
-      // marker.setMap(map);
-      var myTrip = [stavanger,amsterdam,london];
-      var flightPath = new google.maps.Polyline({
-        path:myTrip,
-        strokeColor:"#0000FF",
-        strokeOpacity:0.8,
-        strokeWeight:2
-      });
+       var infowindow = new google.maps.InfoWindow({
+        content : "hello world!"
+       });
+
+       google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map, marker);
+       });
 
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjiB4zsw5c5BO8aXrLDzuF_O4NzlyorLQ&callback=myMap"></script>
 
      <h2>실시간 인기</h2>
+        <div class = "realtime_container">
+            <input type="image" src = "{% static 'realtime_thumbnail1.jpg' %}" alt = "" width="300px" height = "200px" alt="submit feedback">
+            <input type="image" src = "{% static 'realtime_thumbnail2.jpg' %}" alt = "" width="300px" height = "200px" alt="submit feedback">
+            <input type="image" src = "{% static 'realtime_thumbnail3.jpg' %}" alt = "" width="300px" height = "200px" alt="submit feedback">
+
+
+        </div>
+
      <h2>인기 장소</h2>
      <h2>인기 가이더</h2>
      <h2>나를 위한 추천</h2>
+
+
   </body>
 </html>
